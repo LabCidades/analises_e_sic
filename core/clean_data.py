@@ -3,13 +3,6 @@ from pprint import pprint
 
 class DataCleaner:
 
-    def __init__(self, df = None):
-
-        self.load_data = DataLoader()
-        if df is None:
-            df = self.load_data()
-        self.df = df
-
     def drop_all_empty_cols_and_rows(self, df):
 
         original_cols = df.columns
@@ -64,6 +57,10 @@ class DataCleaner:
         print(cols_to_drop)
 
         return df
+
+    def __call__(self, df, threshould = 0.9):
+
+        return self.drop_nulls(df, threshould)
 
 
         
